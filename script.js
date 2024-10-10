@@ -136,6 +136,17 @@ console.log(kadibia.greet());
 
 // 11. Nested Loops: Write a function multiplyTable(n) that prints a multiplication table for numbers from 1 to n
 
+function multiplyTable(n) {
+  const timestable = [];
+
+  for (let i = 1; i <= n; i++) {
+    timestable.push(i * n);
+  }
+
+  return timestable;
+}
+console.log(multiplyTable(3));
+
 // 12. Combining Arrays and Loops: Write a function mergeArrays(arr1, arr2) that takes two arrays and returns a single array with all elements from both arrays.
 
 const arrOfFruits = ["Mango", "Orange", "Pineapple"];
@@ -197,6 +208,12 @@ function checkPassing(studentsGrade) {
 checkPassing(studentsGrade);
 
 // 15. Object with Array Property: Modify the car object to have a features array (e.g., ["air conditioning", "navigation"]). Write a function printCarFeatures(car) that prints all features of the car.
+
+function printCarFeatures(car) {
+  car.push({ features: ["air conditionining", "navigation"] });
+}
+printCarFeatures(car);
+console.log(car);
 
 // 16. Array of Functions: Write an array mathOperations with functions for addition, subtraction, multiplication, and division. Write a function executeOperations(arr, a, b) that calls each function with the arguments a and b and prints the results.
 const mathOperations = [add, subtract, multiply, divide];
