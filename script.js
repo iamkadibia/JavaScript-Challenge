@@ -13,10 +13,11 @@ console.log(greeting);
 
 const array = [2, 6, 7, 9, 4, 6];
 
-function sumArray(array) {
+function sumArray(arr) {
   let sum = 0;
-  for (let i = 0; i < array.length; i++) {
-    sum += array[i];
+
+  for (const num of arr) {
+    sum += num;
   }
   return sum;
 }
@@ -97,6 +98,17 @@ filterEvenNumbers(arr3);
 
 // 8. Modify Object Property: Given a person object with properties name and age, write a function celebrateBirthday(person) that increases the person's age by 1.
 
+const person = {
+  name: "Stanley",
+  age: 22,
+};
+
+function celebrateBirthday(person) {
+  person.age += 1;
+}
+celebrateBirthday(person);
+console.log(person);
+
 // 9. Array Manipulation: Write a function removeFirstAndLast(arr) that removes the first and last elements from an array and returns the modified array.
 
 const arr4 = ["John", "Peter", "Emmanuel", "Shanks"];
@@ -157,7 +169,16 @@ const stud = [
 ];
 
 const findStudentByName = function (stud, name) {
-  for (let i = 0; i < stud.length; i++) {}
+  let foundStudent = null;
+  for (let i = 0; i < stud.length; i++) {
+    const studentName = stud[i].name;
+    if (studentName === name) {
+      foundStudent = stud[i];
+      break;
+    }
+  }
+
+  return foundStudent;
 };
 
 // 14. Conditional with Objects: Write a function checkPassing(students) that takes an array of students and returns a list of students with grade >= 50.
@@ -177,30 +198,156 @@ checkPassing(studentsGrade);
 
 // 15. Object with Array Property: Modify the car object to have a features array (e.g., ["air conditioning", "navigation"]). Write a function printCarFeatures(car) that prints all features of the car.
 
-let car2 = [];
-car2 = car2.push("air conditioning", "navigation");
-function printCarFeatures(car) {
-  console.log(car);
-}
-printCarFeatures(car);
-
 // 16. Array of Functions: Write an array mathOperations with functions for addition, subtraction, multiplication, and division. Write a function executeOperations(arr, a, b) that calls each function with the arguments a and b and prints the results.
+const mathOperations = [add, subtract, multiply, divide];
+
+function add(a, b) {
+  return a + b;
+}
+function subtract(a, b) {
+  return a - b;
+}
+function multiply(a, b) {
+  return a * b;
+}
+function divide(a, b) {
+  return a / b;
+}
+
+function executeOperations(mathOperations, a, b) {
+  for (const operations of mathOperations) {
+    const result = operations(a, b);
+    console.log(result);
+  }
+}
+executeOperations(mathOperations, 5, 2);
 
 // 17. Higher-Order Functions: Write a function filterArray(arr, callback) that takes an array and a callback function and returns a new array where the callback function returns true.
 
+function filterArr(arr, callback) {
+  const filteredArr = [];
+  for (const element of arr) {
+    if (callback(element)) {
+      filteredArr.push(element);
+    }
+  }
+  return filteredArr;
+}
+
 // 18. Object in Loop: Write a function updateGrades(students, bonus) that loops through the students and increases their grades by the bonus amount.
 
+const studentsArr = [
+  {
+    name: "Obasi Daniel",
+    grade: 50,
+  },
+  {
+    name: "Jeremiah Smith",
+    grade: 56,
+  },
+  {
+    name: "Micheal Obi",
+    grade: 60,
+  },
+];
+
+function updateGrades(studentsArr, bonus) {
+  for (let stud of studentsArr) {
+    stud.grade += bonus;
+  }
+  return studentsArr;
+}
+const updatedGrade = updateGrades(studentsArr, 20);
+console.log(updatedGrade);
+
 // 19. Recursion: Write a recursive function factorial(n) that returns the factorial of a number.
+// - what is recoursive function: Function that calls itself directly or indirectly
+// - write a recursive function:
+// - what is factorial: product of all positive integers < or = n
+
+function factorial(n) {
+  n = n * (n - 1);
+  return n;
+}
+const result = factorial(3);
+console.log(result);
 
 // 20. Array of Objects Manipulation: Write a function promoteStudents(students) that increases the grade of each student in an array by 10%, but caps it at 100.
+// How to increase grade by 10%
+
+// using studentsArr from number 18
+function promoteStudents(studentsArr) {
+  for (let stud of studentsArr) {
+    stud.grade *= 1.1;
+  }
+  return studentsArr;
+}
+const displayNewGrade = promoteStudents(studentsArr);
+console.log(displayNewGrade);
 
 // 21. Sorting an Array: Write a function sortStudentsByGrade(students) that sorts an array of student objects by their grade in descending order.
+// How to sort arrays in decendin order
+
+// using studentsArr from number 18
+function sortStudentsByGrade(studentsArr) {
+  return promoteStudents(studentsArr).sort((a, b) => b.grade - a.grade);
+}
+const updatedSortedStudents = sortStudentsByGrade(studentsArr);
+console.log(updatedSortedStudents);
 
 // 22. Combining Array Methods: Write a function averageGrade(students) that calculates the average grade of all students using map() and reduce().
 
+function averageGrade(studentsArr) {
+  const grade = studentsArr.map((student) => student.grade);
+  const sum = grade.reduce((acc, grade) => acc + grade, 0);
+  const average = sum / studentsArr.length;
+  return average;
+}
+const stdAverageGrade = averageGrade(studentsArr);
+console.log(stdAverageGrade);
+
 // 23. Nested Objects: Create a school object that contains an array of classroom objects. Each classroom has a name and a list of students. Write a function printClassrooms(school) that prints the classroom names and their student counts.
 
+const school = {
+  classrooms: [],
+};
+
+school.classrooms.push({
+  name: "SS I",
+  students: ["Bless", "Micheal", "Dabby", "Fred"],
+});
+
+school.classrooms.push({
+  name: "SS II",
+  students: ["Grace", "Oluchi", "Pops", "Bright"],
+});
+
+school.classrooms.push({
+  name: "SS III",
+  students: ["Faith", "Dera", "John"],
+});
+
+function printClassrooms(school) {
+  for (let className of school.classrooms) {
+    console.log(className.name);
+    console.log(className.students.length);
+  }
+}
+const classroomNameAndNumber = printClassrooms(school);
+console.log(classroomNameAndNumber);
+
 // 24. Array Filtering with Conditions: Write a function filterPassingStudentsInClass(school, className) that filters and returns the names of students with grades >= 50 in the specified classroom.
+
+function filterPassingStudentsInClass(school, className) {
+  const passingStudent = [];
+  for (stud of school.students) {
+    if (stud.className === className && stud.grade >= 50) {
+      passingStudent.push(stud.name);
+    }
+  }
+  return passingStudent;
+}
+filterPassingStudentsInClass(school, className);
 
 // 25. Comprehensive Project: Create a simple "Gradebook" system. You should be able to:
 // Add students to the gradebook.
